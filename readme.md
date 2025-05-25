@@ -2,7 +2,46 @@
 
 > **Note:** This project relies on logged hours. It fetches tickets based on the hours logged during the specified date range, not on ticket creation or update dates.
 
-This project generates a detailed report of actual hours logged versus original estimates for Jira issues, grouped by team member and ticket.
+---
+
+## Project Purpose & Prompt
+
+This project was created to generate comprehensive Jira time tracking reports by connecting to the Jira REST API. The requirements and design were based on the following prompt:
+
+> **Prompt Summary:**
+>
+> Create a Python script that generates comprehensive Jira time tracking reports by connecting to the Jira REST API. The script should:
+>
+> **Core Requirements:**
+> - Use Jira REST API with basic authentication (email + API token)
+> - Allow configuration through a separate config file (`jira_config.py`)
+> - Generate reports for a specified date range and project(s)
+> - Compare actual time logged vs original estimates
+>
+> **Report Sections Needed:**
+> 1. **Team Member Summary** - Show each person's total hours logged, number of tickets worked, with estimated vs actual time comparison and variance
+> 2. **Ticket-by-Ticket Analysis** - List all tickets with original estimates, actual time spent, and variance
+> 3. **Individual Breakdowns** - For each team member, show which tickets they worked on with estimates vs actuals
+> 4. **Ticket Breakdowns** - For each ticket, show which team members worked on it and their time distribution
+>
+> **Technical Features:**
+> - Fetch issues using JQL queries filtered by worklog date ranges
+> - Process all worklogs within the specified date period
+> - Handle pagination for large result sets
+> - Support multiple projects or all projects
+> - Save reports to timestamped text files
+> - Include summary statistics like estimation accuracy percentages
+> - Format time in both hours and days
+> - Handle timezone-aware date parsing
+>
+> **Output Format:**
+> - Well-formatted text tables with clear headers and separators
+> - Include totals, averages, and accuracy metrics
+> - Save to organized directory structure with descriptive filenames
+>
+> The script should be production-ready with proper error handling, progress indicators, and configuration validation.
+
+---
 
 ## Features
 - Fetches worklogs from Jira Cloud using REST API

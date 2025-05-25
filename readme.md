@@ -1,5 +1,7 @@
 # Jira Logged Hours Report
 
+> **Note:** This project relies on logged hours. It fetches tickets based on the hours logged during the specified date range, not on ticket creation or update dates.
+
 This project generates a detailed report of actual hours logged versus original estimates for Jira issues, grouped by team member and ticket.
 
 ## Features

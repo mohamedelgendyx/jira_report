@@ -75,7 +75,6 @@ This project was created to generate comprehensive Jira time tracking reports by
      - `JIRA_URL`: Your Jira instance URL (e.g., `https://your-domain.atlassian.net`)
      - `JIRA_EMAIL`: Your Jira email address
      - `JIRA_API_TOKEN`: Your Jira API token
-     - `REPORT_START_DATE` and `REPORT_END_DATE`: The date range for the report (ISO 8601 format)
      - Optionally, set `PROJECT_KEYS` to filter by project(s)
      - Adjust file output options if needed
 
@@ -89,7 +88,26 @@ This project was created to generate comprehensive Jira time tracking reports by
 Run the script from the project directory:
 
 ```sh
-python logged_hours.py
+python logged_hours.py --from-date <FROM_DATE> --to-date <TO_DATE> --participants <PARTICIPANTS ...>
+```
+Example:
+```sh
+python logged_hours.py --from-date "25 May 2025" --to-date "15 Jun 2025" --participants "Alice Smith (Available for 40h)" "Bob Johnson (Available for 40h)" ...
+```
+
+Or
+
+```sh
+python logged_hours.py --args-file PATH_TO_ARGS_FILE
+```
+Args file format:
+```sh
+From: 25 May
+To: 15 June
+Participant Names:
+Alice Smith (Available for 80h)
+Bob Johnson (Available for 40h)
+...
 ```
 
 - The report will be printed to the console.

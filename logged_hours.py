@@ -654,7 +654,7 @@ def generate_report(issues, user_hours, user_names, issue_hours, user_issue_hour
     # Sort users by hours logged (descending)
     total_estimated_all_users = 0
     total_actual_all_users = 0
-    # total_availability = 0
+    total_availability = 0
     
     for user_id, hours in sorted(user_hours.items(), key=lambda x: x[1], reverse=True):
         user_name = user_names.get(user_id, user_id)
@@ -677,7 +677,7 @@ def generate_report(issues, user_hours, user_names, issue_hours, user_issue_hour
         
         total_estimated_all_users += estimated
         total_actual_all_users += hours
-        # total_availability += availability
+        total_availability += availability
         
         report_lines.append(f"{display_name:<30} {format_time(availability):<15} {format_time(estimated):<15} "
                            f"{format_time(hours):<15} {variance_str:<15} {ticket_count:<10}")
@@ -685,11 +685,11 @@ def generate_report(issues, user_hours, user_names, issue_hours, user_issue_hour
     report_lines.append("-" * 100)
     total_variance = total_actual_all_users - total_estimated_all_users
     total_variance_str = f"{total_variance:+.1f}h" if total_estimated_all_users > 0 else "N/A"
-    report_lines.append(f"{'TOTAL':<30} {format_time(total_estimated_all_users):<15} "
+    report_lines.append(f"{'TOTAL':<30} {format_time(total_availability):<15} {format_time(total_estimated_all_users):<15} "
                        f"{format_time(total_actual_all_users):<15} {total_variance_str:<15} {len(issue_hours):<10}")
     
     report_lines.append(f"\nTeam Members: {len(user_hours)}")
-    # report_lines.append(f"Total Team Availability: {format_time(total_availability)}")
+    report_lines.append(f"Total Team Availability: {format_time(total_availability)}")
     report_lines.append(f"Average Estimated Hours per Person: {format_time(total_estimated_all_users / len(user_hours)) if user_hours else '0h'}")
     report_lines.append(f"Average Actual Hours per Person: {format_time(total_actual_all_users / len(user_hours)) if user_hours else '0h'}")
     
